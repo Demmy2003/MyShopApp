@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Kunsthal Rotterdam",
+    "latitude": 51.914168,
+    "longitude": 4.470066,
+    "opening_time": "10:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Museum Boijmans Van Beuningen",
+    "latitude": 51.914848,
+    "longitude": 4.473479,
+    "opening_time": "11:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Maritime Museum Rotterdam",
+    "latitude": 51.917620,
+    "longitude": 4.484440,
+    "opening_time": "10:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Het Nieuwe Instituut",
+    "latitude": 51.915190,
+    "longitude": 4.471758,
+    "opening_time": "10:00",
+    "closing_time": "18:00"
+  },
+  {
+    "name": "Wereldmuseum",
+    "latitude": 51.908156,
+    "longitude": 4.477297,
+    "opening_time": "10:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Chabot Museum",
+    "latitude": 51.914932,
+    "longitude": 4.470793,
+    "opening_time": "11:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Museum Rotterdam",
+    "latitude": 51.920622,
+    "longitude": 4.479914,
+    "opening_time": "10:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Natural History Museum Rotterdam",
+    "latitude": 51.913625,
+    "longitude": 4.470106,
+    "opening_time": "11:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Nederlands Fotomuseum",
+    "latitude": 51.903160,
+    "longitude": 4.486990,
+    "opening_time": "11:00",
+    "closing_time": "17:00"
+  },
+  {
+    "name": "Witte de With Center for Contemporary Art",
+    "latitude": 51.915249,
+    "longitude": 4.478114,
+    "opening_time": "11:00",
+    "closing_time": "18:00"
+  }
+]

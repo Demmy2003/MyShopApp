@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Coffeeshop The Bull",
+    "latitude": 51.920678,
+    "longitude": 4.478122,
+    "opening_time": "10:00",
+    "closing_time": "22:00"
+  },
+  {
+    "name": "Coffeeshop Pluto",
+    "latitude": 51.918654,
+    "longitude": 4.483712,
+    "opening_time": "10:00",
+    "closing_time": "23:00"
+  },
+  {
+    "name": "Coffeeshop Sky High",
+    "latitude": 51.916372,
+    "longitude": 4.479178,
+    "opening_time": "08:00",
+    "closing_time": "00:00"
+  },
+  {
+    "name": "Coffeeshop The Reef",
+    "latitude": 51.922795588927244,
+    "longitude": 4.483004407583357,
+    "opening_time": "09:00",
+    "closing_time": "23:00"
+  },
+  {
+    "name": "Coffeeshop The High Way",
+    "latitude": 51.919281,
+    "longitude": 4.471561,
+    "opening_time": "08:00",
+    "closing_time": "01:00"
+  },
+  {
+    "name": "Coffeeshop The Corner",
+    "latitude": 51.922798,
+    "longitude": 4.469120,
+    "opening_time": "07:00",
+    "closing_time": "00:00"
+  },
+  {
+    "name": "Coffeeshop Nemo",
+    "latitude": 51.921234,
+    "longitude": 4.478679,
+    "opening_time": "09:00",
+    "closing_time": "22:00"
+  },
+  {
+    "name": "Coffeeshop Bambu",
+    "latitude": 51.919475,
+    "longitude": 4.483952,
+    "opening_time": "10:00",
+    "closing_time": "23:00"
+  },
+  {
+    "name": "Coffeeshop Trefpunt",
+    "latitude": 51.917622,
+    "longitude": 4.484712,
+    "opening_time": "10:00",
+    "closing_time": "22:00"
+  },
+  {
+    "name": "Coffeeshop Black Widow",
+    "latitude": 51.920854,
+    "longitude": 4.477367,
+    "opening_time": "09:00",
+    "closing_time": "23:00"
+  }
+]
