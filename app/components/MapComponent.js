@@ -93,4 +93,6 @@ const styles = StyleSheet.create({
     },
 });
 
+console.log('test')
+
 export default MapComponent;
