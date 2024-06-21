@@ -1,21 +1,23 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import MapComponent from "./app/components/MapComponent";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MapComponent from './app/components/MapComponent';
+import CoffeeShopList from './app/components/ListComponent';
+import SavedCoffeeshopsList from './app/components/SavedCoffeeshopsComponent'
+
+
+
+const Stack = createStackNavigator();
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <MapComponent />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Map">
+                <Stack.Screen name="Map" component={MapComponent} />
+                <Stack.Screen name="CoffeeShopList" component={CoffeeShopList} />
+                <Stack.Screen name="SavedCoffeeshopsList" component={SavedCoffeeshopsList} />
+
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    map: {
-        width: '100%',
-        height: '100%',
-    },
-});
