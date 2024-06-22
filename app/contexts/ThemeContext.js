@@ -1,23 +1,27 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { AsyncStorage } from 'react-native';
+// ThemeContext.js
 
-// Create a context for the theme
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { lightTheme, darkTheme } from '../themes/LichtAndDarkTheme'; // Adjust the path as necessary
+
 const ThemeContext = createContext();
 
-// Custom hook to access the theme context
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        throw new Error('useTheme must be used within a ThemeProvider');
+    }
+    return context;
+};
 
-// Theme provider component
 export const ThemeProvider = ({ children }) => {
-    const [isDarkMode, setIsDarkMode] = useState(false); // Default is light mode
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
         const loadTheme = async () => {
             try {
-                const themeValue = await AsyncStorage.getItem('theme');
-                if (themeValue !== null) {
-                    setIsDarkMode(themeValue === 'dark');
-                }
+                const savedMode = await AsyncStorage.getItem('theme');
+                setIsDarkMode(savedMode === 'dark');
             } catch (error) {
                 console.error('Error loading theme:', error);
             }
@@ -26,23 +30,19 @@ export const ThemeProvider = ({ children }) => {
         loadTheme();
     }, []);
 
-    const toggleTheme = async () => {
-        const newMode = !isDarkMode;
-        setIsDarkMode(newMode);
+    const toggleTheme = async (value) => {
         try {
-            await AsyncStorage.setItem('theme', newMode ? 'dark' : 'light');
+            setIsDarkMode(value);
+            await AsyncStorage.setItem('theme', value ? 'dark' : 'light');
         } catch (error) {
             console.error('Error saving theme:', error);
         }
     };
 
-    const theme = {
-        isDarkMode,
-        toggleTheme,
-    };
+    const theme = isDarkMode ? darkTheme : lightTheme;
 
     return (
-        <ThemeContext.Provider value={theme}>
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );

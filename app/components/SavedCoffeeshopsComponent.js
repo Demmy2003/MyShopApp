@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import {View, Text, FlatList, StyleSheet, TextInput, Button, Alert, Pressable} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTheme } from '../contexts/ThemeContext';
 
 const SavedCoffeeshopsList = ({ navigation }) => {
+    const { theme } = useTheme();
     const [savedCoffeeshops, setSavedCoffeeshops] = useState([]);
     const [editingShop, setEditingShop] = useState(null);
     const [notes, setNotes] = useState('');
@@ -22,6 +24,7 @@ const SavedCoffeeshopsList = ({ navigation }) => {
         loadSavedCoffeeshops();
     }, []);
 
+    // Notities opslaan
     const saveNotes = async (shop) => {
         const updatedShops = savedCoffeeshops.map(item =>
             item.name === shop.name ? { ...item, notes } : item
@@ -52,11 +55,63 @@ const SavedCoffeeshopsList = ({ navigation }) => {
         );
     };
 
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            paddingTop: 20,
+            backgroundColor: theme.colors.bg,
+        },
+        item: {
+            margin: 10,
+            padding: 20,
+            backgroundColor: theme.colors.box,
+        },
+        title: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: theme.colors.title
+        },
+        notesInput: {
+            height: 40,
+            borderColor: 'gray',
+            borderWidth: 1,
+            marginBottom: 15,
+            width: '100%',
+            padding: 10,
+            backgroundColor: theme.colors.bg,
+            color: theme.colors.text
+        },
+        textInput: {
+            color: theme.colors.text
+        },
+        button: {
+            marginVertical: 5,
+            padding: 10,
+            alignItems: 'center',
+            backgroundColor: theme.colors.btn,
+            borderRadius: 5,
+        },
+        buttonText: {
+            color: theme.colors.title,
+            fontWeight: 'bold',
+        },
+        buttonDel: {
+            marginVertical: 5,
+            padding: 10,
+            alignItems: 'center',
+            backgroundColor: '#a10d0d',
+            borderRadius: 5,
+        },
+        buttonTextDel: {
+            color: "#fff",
+            fontWeight: 'bold',
+        }
+    });
+
     const renderShop = ({ item }) => (
         <View style={styles.item}>
             <Text style={styles.title}>{item.name}</Text>
-            <Text>{`Opening Hours: ${item.opening_time} - ${item.closing_time}`}</Text>
-            <Text>{`Address: ${item.address}`}</Text>
+            <Text style={styles.textInput}>{`Opening Hours: ${item.opening_time} - ${item.closing_time}`}</Text>
             {editingShop && editingShop.name === item.name ? (
                 <>
                     <TextInput
@@ -64,21 +119,30 @@ const SavedCoffeeshopsList = ({ navigation }) => {
                         value={notes}
                         onChangeText={setNotes}
                     />
-                    <Button title="Save" onPress={() => saveNotes(item)} />
+                    <Pressable style={styles.button} onPress={() => saveNotes(item)}>
+                        <Text style={styles.buttonText}>Save</Text>
+                    </Pressable>
                 </>
             ) : (
                 <>
-                    <Text>{`Notes: ${item.notes}`}</Text>
-                    <Button title="Edit Notes" onPress={() => {
+                    <Text style={styles.textInput}>{`Notes: ${item.notes}`}</Text>
+                    <Pressable style={styles.button} onPress={() => {
                         setEditingShop(item);
                         setNotes(item.notes);
-                    }} />
+                    }}>
+                        <Text style={styles.buttonText}>Edit Notes</Text>
+                    </Pressable>
                 </>
             )}
-            <Button title="View on Map" onPress={() => navigateToShopOnMap(item)} />
-            <Button title="Delete" onPress={() => deleteShop(item)} />
+            <Pressable style={styles.button} onPress={() => navigateToShopOnMap(item)}>
+                <Text style={styles.buttonText}>View on Map</Text>
+            </Pressable>
+            <Pressable style={styles.buttonDel} onPress={() => deleteShop(item)}>
+                <Text style={styles.buttonTextDel}>Delete</Text>
+            </Pressable>
         </View>
     );
+
 
     return (
         <View style={styles.container}>
@@ -91,29 +155,5 @@ const SavedCoffeeshopsList = ({ navigation }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 20,
-        backgroundColor: '#fff',
-    },
-    item: {
-        padding: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    notesInput: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 15,
-        width: '100%',
-        padding: 10,
-    },
-});
 
 export default SavedCoffeeshopsList;
