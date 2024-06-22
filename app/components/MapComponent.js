@@ -87,6 +87,7 @@ const MapComponent = ({ navigation, route }) => {
 
         let updatedSavedCoffeeshops = [...savedCoffeeshops];
 
+        // als coffeeshop al bestaat deze updaten anders nieuwe opslaan
         if (existingIndex >= 0) {
             updatedSavedCoffeeshops[existingIndex] = newSavedCoffeeshop;
         } else {
@@ -101,11 +102,15 @@ const MapComponent = ({ navigation, route }) => {
 
     // Functie voor het openen van de modale weergave met details van coffeeshop
     const openModal = (coffeeshop) => {
+        // geselecteerde coffeeshop ophalen
         setSelectedShop(coffeeshop);
+        // kijken of die bestaat
         const existingShop = savedCoffeeshops.find(shop => shop.name === coffeeshop.name);
-        setNotes(existingShop ? existingShop.notes : ''); // Notities instellen als deze bestaan
+        // Notities instellen als deze bestaan
+        setNotes(existingShop ? existingShop.notes : '');
         setModalVisible(true);
-        setSelectedMarker(coffeeshop.name); // Geselecteerde marker instellen op basis van naam
+        // Geselecteerde marker instellen op basis van naam
+        setSelectedMarker(coffeeshop.name);
     };
 
     // Initiële regio als GPS niet is ingeschakeld
