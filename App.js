@@ -1,51 +1,33 @@
 // App.js
 
-import React, { useEffect } from 'react';
+// react imports
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+// user created imports
 import MapComponent from './app/components/MapComponent';
 import CoffeeShopList from './app/components/ListComponent';
 import SavedCoffeeshopsList from './app/components/SavedCoffeeshopsComponent';
 import SettingsScreen from './app/components/SettingsComponent';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ThemeProvider, useTheme } from './app/contexts/ThemeContext'; // Ensure correct import path
-import { lightTheme, darkTheme } from './app/themes/LichtAndDarkTheme'; // Ensure correct import path
+import { ThemeProvider, useTheme } from './app/contexts/ThemeContext';
 
+// hiermee kan je navigeren tussen de verschillende schermen
 const Stack = createStackNavigator();
 
 const AppContent = () => {
-    let theme, toggleTheme;
-    ({theme, toggleTheme} = useTheme());
-
-    useEffect(() => {
-        // Load saved mode from AsyncStorage on component mount
-        loadMode();
-    }, []);
-
-    const loadMode = async () => {
-        try {
-            const savedMode = await AsyncStorage.getItem('theme');
-            if (savedMode !== null) {
-                toggleTheme(savedMode === 'dark');
-            } else {
-                toggleTheme(false); // Default to light mode if no mode saved
-            }
-        } catch (error) {
-            console.error('Error loading theme mode from AsyncStorage:', error);
-        }
-    };
-
-    useEffect(() => {
-        console.log('Current Theme:', theme); // Log the current theme object
-    }, [theme]);
+    // thema ophalen zodat de navbar ook een thema heeft
+    let theme
+    ({theme} = useTheme());
 
     return (
+        // navbar met thema
         <NavigationContainer theme={theme}>
             <Stack.Navigator initialRouteName="Map">
-                <Stack.Screen name="Map" component={MapComponent} />
-                <Stack.Screen name="CoffeeShopList" component={CoffeeShopList} />
-                <Stack.Screen name="SavedCoffeeshopsList" component={SavedCoffeeshopsList} />
-                <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+                {/*// screens met unieke titel*/}
+                <Stack.Screen name="Map" component={MapComponent} options={{ title: `My Shop Tracker` }} />
+                <Stack.Screen name="CoffeeShopList" component={CoffeeShopList} options={{ title: `Coffee Shops` }} />
+                <Stack.Screen name="SavedCoffeeshopsList" component={SavedCoffeeshopsList} options={{ title: `Saved Coffee Shops` }}/>
+                <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{ title: `Theme Settings` }}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -53,6 +35,7 @@ const AppContent = () => {
 
 export default function App() {
     return (
+        // thema provider toevoegen aan de app zodat je overal theme kan gebruiken
         <ThemeProvider>
             <AppContent />
         </ThemeProvider>

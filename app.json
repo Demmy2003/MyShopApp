@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MyShopApp",
-    "slug": "MyShopApp",
+    "name": "My Shop Tracker",
+    "slug": "MyShopTracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

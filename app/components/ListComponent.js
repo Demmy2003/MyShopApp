@@ -8,14 +8,6 @@ const CoffeeShopList = ({ navigation, route }) => {
     //thema ophalen
     const { theme } = useTheme();
 
-    // checken of er coffeeshops zijn, anders weergeven in html
-    if (!coffeeshops || !Array.isArray(coffeeshops)) {
-        return (
-            <View style={styles.container}>
-                <Text>No coffee shops data available.</Text>
-            </View>
-        );
-    }
 // stylesheet in const zodat ik theme kan gebruiken
     const styles = StyleSheet.create({
         container: {
@@ -49,7 +41,16 @@ const CoffeeShopList = ({ navigation, route }) => {
         },
     });
 
-    // wat de gebruiker te zien krijgt
+    // checken of er coffeeshops zijn, anders weergeven in html
+    if (!coffeeshops || !Array.isArray(coffeeshops)) {
+        return (
+            <View style={styles.container}>
+                <Text>No coffee shops data available.</Text>
+            </View>
+        );
+    }
+
+    // wat de gebruiker te zien krijgt als er wel coffeeshops zijn
     return (
         <View style={styles.container}>
             {/*lijst van coffeeshops, vegelijkmaar met foreach*/}

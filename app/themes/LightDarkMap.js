@@ -1,3 +1,4 @@
+// kleuren voor een donkere kaart
 export const darkMapStyle = [
     {
         "elementType": "geometry",
@@ -185,6 +186,7 @@ export const darkMapStyle = [
     }
 ]
 
+// kleyren voor een lichte kaart
 export const lightMapStyle = [
     {
         "featureType": "road.arterial",
